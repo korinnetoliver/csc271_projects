@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<!-- 
+    Name: Korinne Toliver
+    Date: 12/03/2025
+    Description: Key Away search results page - displays movie recommendations based on keywords
+    AI-assisted suggestion: Page layout, table structure, form design, and responsive styling
+    were created with help from Claude. See separate AI documentation for details.
+-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results – Key Away</title>
+
+    <style>
+        /* ===== CSS Reset ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===== Basic page styling ===== */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            background-color: #1a1a2e;
+            color: #e5e5e5;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+
+        /* ===== Header Section ===== */
+        header {
+            max-width: 1400px;
+            margin: 0 auto 4rem;
+            text-align: center;
+            padding: 2rem 2rem 0;
+        }
+
+        .logo {
+            max-width: 700px;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+            display: block;
+            filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.3));
+        }
+
+        /* ===== Search Info Section ===== */
+        .search-info {
+            max-width: 1400px;
+            margin: 0 auto 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+        }
+
+        .search-keywords {
+            font-size: 1.2rem;
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        /* ===== Main Content ===== */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* ===== Movie Results Grid ===== */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .movie-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-10px);
+            border-color: #667eea;
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .movie-poster {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .movie-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .movie-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== Video Section ===== */
+        .video-section {
+            margin: 4rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+            margin-top: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
+        /* ===== Table Section ===== */
+        .table-section {
+            margin: 4rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #667eea;
+            padding-left: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+
+        th {
+            background: rgba(102, 126, 234, 0.2);
+            color: #ffffff;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        td {
+            padding: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #b0b0b0;
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* ===== Form Section ===== */
+        .form-section {
+            margin: 4rem 0;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        form {
+            margin-top: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: #e5e5e5;
+            font-size: 1rem;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .checkbox-group {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #ffffff;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* ===== Navigation Links ===== */
+        .nav-links {
+            text-align: center;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: #764ba2;
+            border-bottom-color: #764ba2;
+        }
+
+        a:focus {
+            outline: 2px solid #667eea;
+            outline-offset: 3px;
+            border-radius: 2px;
+        }
+
+        /* ===== Responsive Design ===== */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            th, td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header with Logo -->
+    <header>
+        <img src="Images/search_logo.png" alt="Key Away search interface showing keywords: Romantic, Countryside, French" class="logo">
+    </header>
+
+    <!-- Search Information Section -->
+    <section class="search-info">
+        <h1>Your Search Results</h1>
+        <p class="search-keywords">Keywords: Romantic, Countryside, French</p>
+        <p>
+            Based on your search for <strong>"Romantic, Countryside, French"</strong>, we found 
+            3 perfect matches that capture the essence of French romance in beautiful rural settings. 
+            These films showcase picturesque landscapes, intimate storytelling, and the charm of French cinema.
+        </p>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Movie Results Grid -->
+        <section class="results-grid">
+            
+            <!-- Movie 1: Gemma Bovery -->
+            <article class="movie-card">
+                <img src="Images/gemma.png" alt="Gemma Bovery movie poster featuring Gemma Arterton" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">Gemma Bovery</h3>
+                </div>
+            </article>
+
+            <!-- Movie 2: Young & Beautiful -->
+            <article class="movie-card">
+                <img src="Images/Y&B.png" alt="Young and Beautiful movie poster" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">Young & Beautiful</h3>
+                </div>
+            </article>
+
+            <!-- Movie 3: Last Summer -->
+            <article class="movie-card">
+                <img src="Images/lastsummer.png" alt="Last Summer movie poster" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">Last Summer</h3>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- Video Section: How Key Away Works -->
+        <section class="video-section">
+            <h2>Discover How Key Away Works</h2>
+            <p>Watch this video to learn more about finding the perfect film through keyword-based searching:</p>
+            <div class="video-container">
+                <iframe 
+                    width="560" 
+                    height="315" 
+                    src="https://www.youtube.com/embed/KDRypdlTWj8?si=By7k_70j5giMJhSL" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </section>
+
+        <!-- Table Section: Movie Details -->
+        <section class="table-section">
+            <h2>Movie Details</h2>
+            <p>Compare key information about your matched films:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Year</th>
+                        <th>Director</th>
+                        <th>Runtime</th>
+                        <th>Rating</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Gemma Bovery</td>
+                        <td>2014</td>
+                        <td>Anne Fontaine</td>
+                        <td>99 min</td>
+                        <td>6.4/10</td>
+                    </tr>
+                    <tr>
+                        <td>Young & Beautiful</td>
+                        <td>2013</td>
+                        <td>François Ozon</td>
+                        <td>95 min</td>
+                        <td>6.7/10</td>
+                    </tr>
+                    <tr>
+                        <td>Last Summer</td>
+                        <td>2021</td>
+                        <td>Catherine Breillat</td>
+                        <td>104 min</td>
+                        <td>5.6/10</td>
+                        <td>5.6/10</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Form Section: Refine Your Search -->
+        <section class="form-section">
+            <h2>Refine Your Search</h2>
+            <p>Narrow down your results by adding more filters:</p>
+
+            <form>
+                <!-- Text input with validation -->
+                <div class="form-group">
+                    <label for="keywords">Add More Keywords:</label>
+                    <input 
+                        type="text" 
+                        id="keywords" 
+                        name="keywords" 
+                        placeholder="e.g., nostalgic, artistic, drama"
+                        required
+                        minlength="3"
+                    >
+                </div>
+
+                <!-- Number input with validation -->
+                <div class="form-group">
+                    <label for="year">Minimum Year:</label>
+                    <input 
+                        type="number" 
+                        id="year" 
+                        name="year" 
+                        placeholder="e.g., 2010"
+                        min="1900"
+                        max="2025"
+                        required
+                    >
+                </div>
+
+                <!-- Dropdown selection -->
+                <div class="form-group">
+                    <label for="runtime">Maximum Runtime:</label>
+                    <select id="runtime" name="runtime">
+                        <option value="">Any Length</option>
+                        <option value="90">Under 90 minutes</option>
+                        <option value="120">Under 2 hours</option>
+                        <option value="150">Under 2.5 hours</option>
+                        <option value="180">Under 3 hours</option>
+                    </select>
+                </div>
+
+                <!-- Checkbox group -->
+                <div class="form-group">
+                    <label>Streaming Services:</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="netflix" name="service" value="netflix">
+                            <label for="netflix">Netflix</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="hulu" name="service" value="hulu">
+                            <label for="hulu">Hulu</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="prime" name="service" value="prime">
+                            <label for="prime">Prime Video</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="criterion" name="service" value="criterion">
+                            <label for="criterion">Criterion Channel</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Update Results</button>
+            </form>
+        </section>
+
+        <!-- Navigation Links -->
+        <nav class="nav-links">
+            <a href="key_away.html">← Back to Home Page</a>
+        </nav>
+
+    </main>
+
+</body>
+
+</html>
