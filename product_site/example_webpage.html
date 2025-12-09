@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- 
     Name: Korinne Toliver
-    Date: 12/03/2025
+    Date: 12/08/2025
     Description: Key Away search results page - displays movie recommendations based on keywords
     AI-assisted suggestion: Page layout, table structure, form design, and responsive styling
     were created with help from Claude. See separate AI documentation for details.
@@ -17,24 +17,34 @@
 
 <body>
 
-    <!-- Header with Logo -->
-    <header>
-        <img src="Images/search_logo.png" alt="Key Away search interface showing keywords: Romantic, Countryside, French" class="logo">
+    <!-- Header with Logo and Navigation -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo-nav">
+                <img src="Images/keyaway_logo.png" alt="Key Away Logo" class="header-logo">
+            </div>
+            <nav class="main-nav">
+                <a href="key_away.html" class="nav-link">Home</a>
+                <a href="example_webpage.html" class="nav-link active">Search Example</a>
+                <a href="review.html" class="nav-link">User Reviews</a>
+            </nav>
+        </div>
     </header>
 
-    <!-- Search Information Section -->
-    <section class="search-info">
-        <h1>Your Search Results</h1>
-        <p class="search-keywords">Keywords: Romantic, Countryside, French</p>
-        <p>
-            Based on your search for <strong>"Romantic, Countryside, French"</strong>, we found 
-            3 perfect matches that capture the essence of French romance in beautiful rural settings. 
-            These films showcase picturesque landscapes, intimate storytelling, and the charm of French cinema.
-        </p>
-    </section>
-
     <!-- Main Content -->
-    <main>
+    <main class="content-wrapper">
+
+        <!-- Search Information Section -->
+        <section class="search-info">
+            <img src="Images/search_logo.png" alt="Key Away search interface showing keywords: Romantic, Countryside, French" class="content-image">
+            <h1>Your Search Results</h1>
+            <p class="search-keywords">Keywords: Romantic, Countryside, French</p>
+            <p>
+                Based on your search for <strong>"Romantic, Countryside, French"</strong>, we found 
+                3 perfect matches that capture the essence of French romance in beautiful rural settings. 
+                These films showcase picturesque landscapes, intimate storytelling, and the charm of French cinema.
+            </p>
+        </section>
 
         <!-- Movie Results Grid -->
         <section class="results-grid">
@@ -195,13 +205,6 @@
                 <button type="submit" class="submit-btn">Update Results</button>
             </form>
         </section>
-
-        <!-- Navigation Links -->
-        <nav class="nav-links">
-            <a href="key_away.html">Home</a>
-            <a href="example_webpage.html">See Search Example</a>
-            <a href="review.html">User Reviews</a>
-        </nav>
 
     </main>
 
