@@ -11,286 +11,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Key Away – Find Your Perfect Watch in Seconds</title>
-
-    <style>
-        /* ===== CSS Reset ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* ===== Moving background image section ===== */
-        .moving-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 195%;
-            height: 100vh;
-            background-image: url("Images/background.png");
-            background-repeat: repeat-x;
-            background-size: contain;
-            animation: slideBG 60s linear infinite;
-            z-index: -1;
-            opacity: 0.25;
-        }
-
-        @keyframes slideBG {
-            from {
-                transform: translateX(0);
-            }
-            to {
-                transform: translateX(-50%);
-            }
-        }
-
-        /* ===== Basic page typography/layout ===== */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background-color: #1a1a2e;
-            color: #e5e5e5;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* ===== Hero Section ===== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 2rem;
-            position: relative;
-        }
-
-        .logo-container {
-            margin-bottom: 3rem;
-            animation: fadeInDown 1s ease-out;
-        }
-
-        .logo-container img {
-            width: 100;
-            max-width: 900px;
-            height: auto;
-            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.1));
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .tagline {
-            font-size: 1.5rem;
-            font-weight: 300;
-            margin-bottom: 2rem;
-            color: #b0b0b0;
-            animation: fadeIn 1.5s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: #ffffff;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border: none;
-            border-radius: 50px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-            animation: fadeIn 2s ease-out;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
-        }
-
-        .cta-button:focus {
-            outline: 2px solid #667eea;
-            outline-offset: 3px;
-        }
-
-        /* ===== Main Content ===== */
-        main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .content-section {
-            margin-bottom: 5rem;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            color: #ffffff;
-            border-left: 4px solid #667eea;
-            padding-left: 1.5rem;
-        }
-
-        p {
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            color: #b0b0b0;
-            max-width: 800px;
-        }
-
-        strong {
-            color: #ffffff;
-            font-weight: 600;
-        }
-
-        em {
-            color: #667eea;
-            font-style: italic;
-        }
-
-        hr {
-            border: none;
-            height: 1px;
-            background: linear-gradient(to right, transparent, #333, transparent);
-            margin: 3rem 0;
-        }
-
-        /* ===== Features List ===== */
-        .features-list {
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-
-        .features-list li {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .features-list li:hover {
-            background: rgba(255, 255, 255, 0.05);
-            transform: translateY(-5px);
-            border-color: #667eea;
-        }
-
-        .features-list strong {
-            display: block;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: #667eea;
-        }
-
-        /* ===== Links Section ===== */
-        .links-section {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .links-section p {
-            margin-bottom: 1rem;
-        }
-
-        a {
-            color: #667eea;
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-
-        a:hover {
-            color: #764ba2;
-            border-bottom-color: #764ba2;
-        }
-
-        a:focus {
-            outline: 2px solid #667eea;
-            outline-offset: 3px;
-            border-radius: 2px;
-        }
-
-        /* ===== Skip to main content (accessibility) ===== */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: #667eea;
-            color: white;
-            padding: 8px;
-            text-decoration: none;
-            z-index: 100;
-        }
-
-        .skip-link:focus {
-            top: 0;
-        }
-
-        /* ===== Responsive Design ===== */
-        @media (max-width: 768px) {
-            .logo-container img {
-                max-width: 90%;
-            }
-
-            .tagline {
-                font-size: 1.2rem;
-            }
-
-            h2 {
-                font-size: 2rem;
-            }
-
-            .features-list {
-                grid-template-columns: 1fr;
-            }
-
-            main {
-                padding: 3rem 1.5rem;
-            }
-        }
-    </style>
+    <title>Key Away - Find Your Perfect Watch in Seconds</title>
+    
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body class="home-page">
     <!-- Skip to main content link for keyboard users -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
@@ -371,14 +98,18 @@
             <h2>Explore More</h2>
 
             <p>
-                <a href="https://korinnetoliver.rhody.dev/portfolio/key_away.html">Return to the main product page</a>
+                <a href="example_webpage.html">See Search Example</a>
+            </p>
+
+            <p>
+                <a href="review.html">User Reviews</a>
             </p>
 
             <p>
                 Discover trending films and reviews on 
                 <a href="https://www.imdb.com" target="_blank" rel="noopener noreferrer">
                     IMDb
-                </a> (opens in new tab)
+                
             </p>
 
             <p>

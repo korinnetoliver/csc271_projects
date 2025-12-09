@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<!-- 
+    Name: Korinne Toliver
+    Date: 12/08/2025
+    Description: Key Away user reviews page - showcasing user feedback on keyword accuracy
+    AI-assisted suggestion: Page structure, hero header design, review card layout, 
+    grid system, and styling were created with help from Claude. See separate AI 
+    documentation for details
+-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Reviews - Key Away</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="review-page">
+
+    <!-- Header with Logo and Navigation -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo-nav">
+                <img src="Images/keyaway_logo.png" alt="Key Away Logo" class="header-logo">
+            </div>
+            <nav class="main-nav">
+                <a href="key_away.html" class="nav-link">Home</a>
+                <a href="example_webpage.html" class="nav-link">Search Example</a>
+                <a href="review.html" class="nav-link active">User Reviews</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Header with Background Image -->
+    <section class="hero-header">
+        <div class="hero-content">
+            <img src="Images/keyaway_logo.png" alt="Key Away Logo" class="logo">
+            
+            <!-- Main Heading -->
+            <h1>User Reviews</h1>
+            
+            <p class="subtitle">See how our keyword-based search helped real users reach their goal</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="content-wrapper">
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="stat-card">
+                <span class="stat-number">94%</span>
+                <span class="stat-label">Accuracy Rating</span>
+            </div>
+            
+            <div class="stat-card">
+                <span class="stat-number">1,247</span>
+                <span class="stat-label">Happy Users</span>
+            </div>
+            
+            <div class="stat-card">
+                <span class="stat-number">4.8</span>
+                <span class="stat-label">Average Stars</span>
+            </div>
+        </section>
+
+        <!-- Reviews Grid -->
+        <section class="reviews-grid">
+
+            <!-- Review 1: Gemma Bovery -->
+            <article class="review-card">
+                <img src="Images/gemma.png" alt="Gemma Bovery Movie Poster" class="review-poster">
+                
+                <div class="review-content">
+                    <div class="review-header">
+                        <span class="reviewer-name">Sarah M.</span>
+                        <span class="review-date">November 28, 2025</span>
+                    </div>
+                    
+                    <div class="star-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    
+                    <div class="keywords-searched">
+                        <div class="keywords-label">Keywords Used</div>
+                        <div class="keywords-list">"Romantic, Countryside, French"</div>
+                    </div>
+                    
+                    <p class="review-text">
+                        I was looking for something romantic set in the French countryside and Key Away nailed it! 
+                        The keywords were incredibly accurate. Within seconds, I found "Gemma Bovery" which was 
+                        EXACTLY what I was in the mood for. No more endless scrolling!
+                    </p>
+                    
+                    <div class="movie-found">
+                        <div class="movie-label">Movie Found:</div>
+                        <div class="movie-title">Gemma Bovery (2014)</div>
+                    </div>
+                    
+                    <span class="accuracy-badge accuracy-high">Highly Accurate Match</span>
+                </div>
+            </article>
+
+            <!-- Review 2: Young & Beautiful -->
+            <article class="review-card">
+                <img src="Images/Y&B.png" alt="Young and Beautiful Movie Poster" class="review-poster">
+                
+                <div class="review-content">
+                    <div class="review-header">
+                        <span class="reviewer-name">Emma L.</span>
+                        <span class="review-date">November 25, 2025</span>
+                    </div>
+                    
+                    <div class="star-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    
+                    <div class="keywords-searched">
+                        <div class="keywords-label">Keywords Used</div>
+                        <div class="keywords-list">"Coming-of-age, French, Artistic"</div>
+                    </div>
+                    
+                    <p class="review-text">
+                        The keyword search is a game-changer! I typed in exactly what I wanted to feel and got 
+                        this beautiful French film that captured everything perfectly. The artistic cinematography 
+                        and emotional depth were spot-on. Key Away really understands nuance.
+                    </p>
+                    
+                    <div class="movie-found">
+                        <div class="movie-label">Movie Found:</div>
+                        <div class="movie-title">Young and Beautiful (2013)</div>
+                    </div>
+                    
+                    <span class="accuracy-badge accuracy-high">Highly Accurate Match</span>
+                </div>
+            </article>
+
+            <!-- Review 3: Last Summer -->
+            <article class="review-card">
+                <img src="Images/lastsummer.png" alt="Last Summer Movie Poster" class="review-poster">
+                
+                <div class="review-content">
+                    <div class="review-header">
+                        <span class="reviewer-name">Marcus T.</span>
+                        <span class="review-date">November 22, 2025</span>
+                    </div>
+                    
+                    <div class="star-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    
+                    <div class="keywords-searched">
+                        <div class="keywords-label">Keywords Used</div>
+                        <div class="keywords-list">"Emotional, Drama, French, Summer"</div>
+                    </div>
+                    
+                    <p class="review-text">
+                        Really happy with the results! The keyword system understood exactly what vibe I wanted. 
+                        "Last Summer" was such an emotionally powerful film that perfectly matched my search. 
+                        The rural French setting and dramatic storytelling were exactly what I needed.
+                    </p>
+                    
+                    <div class="movie-found">
+                        <div class="movie-label">Movie Found:</div>
+                        <div class="movie-title">Last Summer (2021)</div>
+                    </div>
+                    
+                    <span class="accuracy-badge accuracy-high">Highly Accurate Match</span>
+                </div>
+            </article>
+
+            <!-- Review 4: General Review with search_logo -->
+            <article class="review-card">
+                <img src="Images/search_logo.png" alt="Key Away Search Interface" class="review-poster">
+                
+                <div class="review-content">
+                    <div class="review-header">
+                        <span class="reviewer-name">David K.</span>
+                        <span class="review-date">November 20, 2025</span>
+                    </div>
+                    
+                    <div class="star-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    
+                    <div class="keywords-searched">
+                        <div class="keywords-label">Keywords Used</div>
+                        <div class="keywords-list">"Thrilling, Suspenseful, Plot-twist"</div>
+                    </div>
+                    
+                    <p class="review-text">
+                        Finally! A search that actually gets it. I'm tired of Netflix's generic categories. 
+                        Key Away's keyword search found exactly what I was looking for. The interface is 
+                        intuitive and the results are spot-on. This changes everything.
+                    </p>
+                    
+                    <div class="movie-found">
+                        <div class="movie-label">Multiple Matches Found</div>
+                        <div class="movie-title">Perfect recommendations every time</div>
+                    </div>
+                    
+                    <span class="accuracy-badge accuracy-high">Highly Accurate Match</span>
+                </div>
+            </article>
+
+            <!-- Review 5: Another general positive review -->
+            <article class="review-card">
+                <img src="Images/background.png" alt="Key Away Mood Keywords" class="review-poster">
+                
+                <div class="review-content">
+                    <div class="review-header">
+                        <span class="reviewer-name">Priya S.</span>
+                        <span class="review-date">November 18, 2025</span>
+                    </div>
+                    
+                    <div class="star-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    
+                    <div class="keywords-searched">
+                        <div class="keywords-label">Keywords Used</div>
+                        <div class="keywords-list">"Heartfelt, Drama, Family"</div>
+                    </div>
+                    
+                    <p class="review-text">
+                        The keywords perfectly captured what I needed. Something emotional and family-centered. 
+                        Key Away understood the nuance of my search better than any other platform. Saved me 
+                        30 minutes of browsing! The mood-based keywords are brilliant.
+                    </p>
+                    
+                    <div class="movie-found">
+                        <div class="movie-label">Perfect Mood Match</div>
+                        <div class="movie-title">Found my ideal watch instantly</div>
+                    </div>
+                    
+                    <span class="accuracy-badge accuracy-high">Highly Accurate Match</span>
+                </div>
+            </article>
+
+            <!-- Review 6: Gemma Bovery second review -->
+            <article class="review-card">
+                <img src="Images/gemma.png" alt="Gemma Bovery Movie Poster" class="review-poster">
+                
+                <div class="review-content">
+                    <div class="review-header">
+                        <span class="reviewer-name">Alex R.</span>
+                        <span class="review-date">November 15, 2025</span>
+                    </div>
+                    
+                    <div class="star-rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                    
+                    <div class="keywords-searched">
+                        <div class="keywords-label">Keywords Used</div>
+                        <div class="keywords-list">"Charming, Literary, French Cinema"</div>
+                    </div>
+                    
+                    <p class="review-text">
+                        Great experience overall! As a literature fan, I loved how Key Away connected me with 
+                        "Gemma Bovery". A modern take on a classic story. The keyword matching understood 
+                        exactly what I meant by "literary." This is the future of movie discovery.
+                    </p>
+                    
+                    <div class="movie-found">
+                        <div class="movie-label">Movie Found:</div>
+                        <div class="movie-title">Gemma Bovery (2014)</div>
+                    </div>
+                    
+                    <span class="accuracy-badge accuracy-high">Highly Accurate Match</span>
+                </div>
+            </article>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

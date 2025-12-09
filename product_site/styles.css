@@ -1,0 +1,915 @@
+/* 
+    Name: Korinne Toliver
+    Date: 12/08/2025
+    Description: External stylesheet for Key Away website - provides consistent styling
+                 across all pages including layout, colors, typography, and responsive design.
+                 Part II additions include: header navigation, content wrapper with box model,
+                 floating images, and enhanced responsive media queries.
+    AI-assisted suggestion: Page layout structure, grid systems, form styling, card designs,
+                           hero header with overlay, responsive breakpoints, and navigation
+                           system were created with help from Claude. 
+                           See separate AI documentation for details.
+*/
+
+/* ===== CSS Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== PART II: HEADER SECTION ===== */
+/* Site header with navigation - appears on all pages */
+.site-header {
+    overflow: hidden; /* Clips content and handles overflow */
+    background-color: rgba(26, 26, 46, 0.95);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid rgba(102, 126, 234, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo in header */
+.header-logo {
+    height: 50px;
+    width: auto;
+    float: left; /* Float left */
+}
+
+/* Main navigation */
+.main-nav {
+    float: right; /* Float right */
+}
+
+.nav-link {
+    float: left; /* Navigation links float left */
+    display: block;
+    color: #667eea;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+/* Mouse hover effect for navigation */
+.nav-link:hover {
+    color: #ffffff;
+    background-color: rgba(102, 126, 234, 0.2);
+    border-bottom-color: #764ba2;
+    transform: translateY(-2px);
+}
+
+/* Active/current page link styling */
+.nav-link.active {
+    color: #ffffff;
+    background-color: rgba(102, 126, 234, 0.3);
+    border-bottom-color: #667eea;
+}
+
+/* On click effect */
+.nav-link:active {
+    transform: translateY(0);
+    background-color: rgba(118, 75, 162, 0.4);
+}
+
+/* ===== PART II: MAIN CONTENT WRAPPER ===== */
+/* Content box using CSS box model - contains all body elements */
+.content-wrapper {
+    float: none; /* Center alignment */
+    width: 90%; /* Takes up 90% of available space */
+    max-width: 1400px;
+    margin: 2rem auto; /* Centers the content box */
+    padding: 2rem; /* Padding inside content box */
+    background-color: rgba(26, 26, 46, 0.6); /* Solid background for visibility */
+    border-radius: 12px;
+}
+
+/* ===== PART II: IMAGE FLOATING & MARGINS ===== */
+/* All content images float and have margins so text doesn't touch */
+.content-image {
+    float: left; /* Float left */
+    margin: 0 20px 20px 0; /* Margin so text doesn't rest against image */
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Alternative: images that float right */
+.content-image-right {
+    float: right;
+    margin: 0 0 20px 20px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* All images scale to fit but never larger than original */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ===== Moving background animation (for key_away.html only) ===== */
+.moving-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 195%;
+    height: 100vh;
+    background-image: url("Images/background.png");
+    background-repeat: repeat-x;
+    background-size: contain;
+    animation: slideBG 60s linear infinite;
+    z-index: -1;
+    opacity: 0.25;
+}
+
+@keyframes slideBG {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+/* ===== Hero Section (for key_away.html) ===== */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+}
+
+.logo-container {
+    margin-bottom: 3rem;
+    animation: fadeInDown 1s ease-out;
+}
+
+.logo-container img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.1));
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tagline {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    color: #b0b0b0;
+    animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #ffffff;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    animation: fadeIn 2s ease-out;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+}
+
+.cta-button:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 3px;
+}
+
+.content-section {
+    margin-bottom: 5rem;
+    animation: fadeInUp 1s ease-out;
+}
+
+/* ===== Features List ===== */
+.features-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.features-list li {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.features-list li:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-5px);
+    border-color: #667eea;
+}
+
+.features-list strong {
+    display: block;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #667eea;
+}
+
+/* ===== Links Section ===== */
+.links-section {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.links-section p {
+    margin-bottom: 1rem;
+}
+
+/* ===== Skip to main content (accessibility) ===== */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: #667eea;
+    color: white;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* ===== Override body for key_away.html ===== */
+body.home-page {
+    overflow-x: hidden;
+    padding: 0;
+}
+
+/* ===== Basic page styling ===== */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+    background-color: #1a1a2e;
+    color: #e5e5e5;
+    line-height: 1.6;
+    padding: 0; /* Remove padding since header is now fixed */
+}
+
+/* ===== Main Content ===== */
+main {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ===== Search Info Section ===== */
+.search-info {
+    max-width: 1400px;
+    margin: 0 auto 3rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+h1 {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    border-left: 4px solid #667eea;
+    padding-left: 1rem;
+    clear: both; /* Clear floats */
+}
+
+.search-keywords {
+    font-size: 1.2rem;
+    color: #667eea;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+/* ===== Movie Results Grid ===== */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* FIXED: was minmin */
+    gap: 2.5rem;
+    margin-bottom: 4rem;
+}
+
+.movie-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.movie-card:hover {
+    transform: translateY(-10px);
+    border-color: #667eea;
+    box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+}
+
+.movie-poster {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.movie-info {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.movie-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 0.5rem;
+}
+
+/* ===== Video Section ===== */
+.video-section {
+    margin: 4rem 0;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    margin-top: 1.5rem;
+    border-radius: 8px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+/* ===== Table Section ===== */
+.table-section {
+    margin: 4rem 0;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+h2 {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #667eea;
+    padding-left: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+}
+
+th {
+    background: rgba(102, 126, 234, 0.2);
+    color: #ffffff;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+td {
+    padding: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #b0b0b0;
+}
+
+tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* ===== Form Section ===== */
+.form-section {
+    margin: 4rem 0;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+form {
+    margin-top: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #e5e5e5;
+    font-size: 1rem;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    outline: none;
+    border-color: #667eea;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.checkbox-group {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.submit-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    padding: 1rem 2.5rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.submit-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+}
+
+/* ===== Navigation Links (bottom of page) ===== */
+.nav-links {
+    text-align: center;
+    margin: 3rem 0;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.1rem;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+    margin: 0 1.5rem;
+}
+
+a:visited {
+    color: #764ba2;
+}
+
+a:hover {
+    color: #764ba2;
+    border-bottom-color: #764ba2;
+}
+
+a:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+/* ===== Horizontal Rule ===== */
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #333, transparent);
+    margin: 3rem 0;
+}
+
+/* ===== Paragraph Styling ===== */
+p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    color: #b0b0b0;
+    max-width: 800px;
+}
+
+strong {
+    color: #ffffff;
+    font-weight: 600;
+}
+
+em {
+    color: #667eea;
+    font-style: italic;
+}
+
+/* ===== REVIEW PAGE SPECIFIC STYLES ===== */
+
+/* Override body background for review page */
+body.review-page {
+    background-color: #ffe0e6;
+    padding: 0;
+}
+
+/* ===== Hero Header with Background Image ===== */
+.hero-header {
+    background-image: url('Images/customer_reviews_bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    position: relative;
+}
+
+/* Dark overlay for better text readability */
+.hero-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 22, 40, 0.7);
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-header .logo {
+    max-width: 400px;
+}
+
+.logo {
+    max-width: 700px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.3));
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    color: #e5e5e5;
+    margin-top: 1rem;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* ===== Stats Section ===== */
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-card {
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #667eea;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: #b0b0b0;
+}
+
+/* ===== Reviews Grid ===== */
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* ===== Individual Review Card  ===== */
+.review-card {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    border-color: #667eea;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+}
+
+/* ===== Movie Poster in Review ===== */
+.review-poster {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: block;
+}
+
+/* ===== Review Content ===== */
+.review-content {
+    padding: 2rem;
+}
+
+/* ===== Review Header ===== */
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.reviewer-name {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.review-date {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* ===== Star Rating ===== */
+.star-rating {
+    color: #fbbf24;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+/* ===== Keywords Section in Review ===== */
+.keywords-searched {
+    background: rgba(102, 126, 234, 0.1);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.keywords-label {
+    font-size: 0.85rem;
+    color: #667eea;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.keywords-list {
+    font-style: italic;
+    color: #e5e5e5;
+}
+
+/* ===== Review Text ===== */
+.review-text {
+    color: #b0b0b0;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+/* ===== Movie Found Section ===== */
+.movie-found {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.movie-label {
+    font-size: 0.85rem;
+    color: #667eea;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+/* ===== Accuracy Badge ===== */
+.accuracy-badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.accuracy-high {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+    border: 1px solid #22c55e;
+}
+
+/* ===== PART II: RESPONSIVE WEB DESIGN ===== */
+/* Media query for screens 600px or less */
+@media (max-width: 600px) {
+    /* Header links: don't float, display as block, text aligned left */
+    .nav-link {
+        float: none;
+        display: block;
+        text-align: left;
+        width: 100%;
+    }
+    
+    .main-nav {
+        float: none;
+        width: 100%;
+    }
+    
+    /* Main content: 100% width, larger font */
+    .content-wrapper {
+        width: 100%;
+        font-size: 1.15rem;
+    }
+    
+    /* Header adjustments for mobile */
+    .site-header {
+        padding: 1rem;
+    }
+    
+    .header-container {
+        flex-direction: column;
+    }
+    
+    .header-logo {
+        float: none;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Additional responsive breakpoints */
+@media (max-width: 768px) {
+    body {
+        padding: 0;
+    }
+
+    .results-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+
+    th, td {
+        padding: 0.75rem 0.5rem;
+    }
+
+    .hero-header {
+        min-height: 50vh;
+    }
+
+    .stats-section {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-links a {
+        display: block;
+        margin: 1rem 0;
+    }
+
+    .review-poster {
+        height: 300px;
+    }
+
+    .logo-container img {
+        max-width: 90%;
+    }
+
+    .tagline {
+        font-size: 1.2rem;
+    }
+
+    .features-list {
+        grid-template-columns: 1fr;
+    }
+
+    main {
+        padding: 1rem;
+    }
+    
+    .content-wrapper {
+        padding: 1rem;
+    }
+}
