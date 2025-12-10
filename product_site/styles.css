@@ -814,7 +814,7 @@ body.review-page {
 
 /* ===== PART II: RESPONSIVE WEB DESIGN ===== */
 /* Media query for screens 600px or less */
-@media (max-width: 600px) {
+@media (max-width: 400px) {
     /* Header links: don't float, display as block, text aligned left */
     .nav-link {
         float: none;
