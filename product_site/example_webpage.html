@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- 
     Name: Korinne Toliver
-    Date: 12/03/2025
+    Date: 12/14/2025
     Description: Key Away search results page - displays movie recommendations based on keywords
     AI-assisted suggestion: Page layout, table structure, form design, and responsive styling
     were created with help from Claude. See separate AI documentation for details.
@@ -11,351 +11,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results – Key Away</title>
-
-    <style>
-        /* ===== CSS Reset ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* ===== Basic page styling ===== */
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-            background-color: #1a1a2e;
-            color: #e5e5e5;
-            line-height: 1.6;
-            padding: 2rem;
-        }
-
-        /* ===== Header Section ===== */
-        header {
-            max-width: 1400px;
-            margin: 0 auto 4rem;
-            text-align: center;
-            padding: 2rem 2rem 0;
-        }
-
-        .logo {
-            max-width: 700px;
-            width: 100%;
-            height: auto;
-            margin: 0 auto;
-            display: block;
-            filter: drop-shadow(0 5px 20px rgba(0, 0, 0, 0.3));
-        }
-
-        /* ===== Search Info Section ===== */
-        .search-info {
-            max-width: 1400px;
-            margin: 0 auto 3rem;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        h1 {
-            font-size: 2rem;
-            color: #ffffff;
-            margin-bottom: 1rem;
-            border-left: 4px solid #667eea;
-            padding-left: 1rem;
-        }
-
-        .search-keywords {
-            font-size: 1.2rem;
-            color: #667eea;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            display: none;
-        }
-
-        /* ===== Main Content ===== */
-        main {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* ===== Movie Results Grid ===== */
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            margin-bottom: 4rem;
-        }
-
-        .movie-card {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .movie-card:hover {
-            transform: translateY(-10px);
-            border-color: #667eea;
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
-        }
-
-        .movie-poster {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .movie-info {
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .movie-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: #ffffff;
-            margin-bottom: 0.5rem;
-        }
-
-        /* ===== Video Section ===== */
-        .video-section {
-            margin: 4rem 0;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-            height: 0;
-            overflow: hidden;
-            max-width: 100%;
-            margin-top: 1.5rem;
-            border-radius: 8px;
-        }
-
-        .video-container iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 8px;
-        }
-
-        /* ===== Table Section ===== */
-        .table-section {
-            margin: 4rem 0;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        h2 {
-            font-size: 2rem;
-            color: #ffffff;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid #667eea;
-            padding-left: 1rem;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1.5rem;
-        }
-
-        th {
-            background: rgba(102, 126, 234, 0.2);
-            color: #ffffff;
-            padding: 1rem;
-            text-align: left;
-            font-weight: 600;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        td {
-            padding: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #b0b0b0;
-        }
-
-        tr:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        /* ===== Form Section ===== */
-        .form-section {
-            margin: 4rem 0;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        form {
-            margin-top: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
-            font-weight: 500;
-        }
-
-        input[type="text"],
-        input[type="number"],
-        select {
-            width: 100%;
-            padding: 0.75rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            color: #e5e5e5;
-            font-size: 1rem;
-        }
-
-        input[type="text"]:focus,
-        input[type="number"]:focus,
-        select:focus {
-            outline: none;
-            border-color: #667eea;
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .checkbox-group {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-        }
-
-        .submit-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #ffffff;
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-        }
-
-        /* ===== Navigation Links ===== */
-        .nav-links {
-            text-align: center;
-            margin: 3rem 0;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        a:hover {
-            color: #764ba2;
-            border-bottom-color: #764ba2;
-        }
-
-        a:focus {
-            outline: 2px solid #667eea;
-            outline-offset: 3px;
-            border-radius: 2px;
-        }
-
-        /* ===== Responsive Design ===== */
-        @media (max-width: 768px) {
-            body {
-                padding: 1rem;
-            }
-
-            .results-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            h1 {
-                font-size: 1.5rem;
-            }
-
-            h2 {
-                font-size: 1.5rem;
-            }
-
-            table {
-                font-size: 0.9rem;
-            }
-
-            th, td {
-                padding: 0.75rem 0.5rem;
-            }
-        }
-    </style>
+    
+    <!-- SEO: Page Title with Keywords -->
+    <title>Movie Search Results - French Romantic Films | Key Away Keyword Search Example</title>
+    
+    <!-- SEO: Meta Description -->
+    <meta name="description" content="See how Key Away's keyword movie search works. View movie search results for French romantic countryside films including Gemma Bovery, Young & Beautiful, and Last Summer.">
+    
+    <!-- SEO: Keywords Meta Tag -->
+    <meta name="keywords" content="movie search results, French romantic films, countryside movies, keyword search example, film recommendations, movie finder">
+    
+    <!-- SEO: Open Graph Tags -->
+    <meta property="og:title" content="Keyword Movie Search Example - Key Away">
+    <meta property="og:description" content="See real results from our keyword-based movie search. Find French romantic films instantly.">
+    <meta property="og:image" content="https://korinnetoliver.rhody.dev/csc271_projects/product_site/Images/search_logo.png">
+    <meta property="og:url" content="https://korinnetoliver.rhody.dev/csc271_projects/product_site/example_webpage.html">
+    <meta property="og:type" content="website">
+    
+    <!-- SEO: Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Movie Search Example - Key Away">
+    <meta name="twitter:description" content="French romantic film recommendations from keyword search">
+    <meta name="twitter:image" content="https://korinnetoliver.rhody.dev/csc271_projects/product_site/Images/search_logo.png">
+    
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D9X19G6KZB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-D9X19G6KZB');
+    </script>
+    
 </head>
 
 <body>
 
-    <!-- Header with Logo -->
-    <header>
-        <img src="Images/search_logo.png" alt="Key Away search interface showing keywords: Romantic, Countryside, French" class="logo">
+    <!-- Header with Logo and Navigation -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="logo-nav">
+                <img src="Images/keyaway_logo.png" alt="Key Away movie finder logo" class="header-logo">
+            </div>
+            <nav class="main-nav">
+                <a href="key_away.html" class="nav-link">Home</a>
+                <a href="example_webpage.html" class="nav-link active">Movie Search Example</a>
+                <a href="review.html" class="nav-link">User Reviews and Testimonials</a>
+            </nav>
+        </div>
     </header>
 
-    <!-- Search Information Section -->
-    <section class="search-info">
-        <h1>Your Search Results</h1>
-        <p class="search-keywords">Keywords: Romantic, Countryside, French</p>
-        <p>
-            Based on your search for <strong>"Romantic, Countryside, French"</strong>, we found 
-            3 perfect matches that capture the essence of French romance in beautiful rural settings. 
-            These films showcase picturesque landscapes, intimate storytelling, and the charm of French cinema.
-        </p>
-    </section>
-
     <!-- Main Content -->
-    <main>
+    <main class="content-wrapper">
+
+        <!-- Search Information Section -->
+        <section class="search-info">
+            <img src="Images/search_logo.png" alt="Key Away keyword search interface showing romantic French countryside film search" class="content-image">
+            <h1>Your Movie Search Results</h1>
+            <p class="search-keywords">Keywords: Romantic, Countryside, French</p>
+            <p>
+                Based on your keyword movie search for <strong>"Romantic, Countryside, French"</strong>, we found 
+                3 perfect matches of <strong>French romantic films</strong> set in beautiful rural settings. 
+                These film recommendations showcase picturesque landscapes, intimate storytelling, and the charm of French cinema.
+            </p>
+        </section>
 
         <!-- Movie Results Grid -->
         <section class="results-grid">
             
             <!-- Movie 1: Gemma Bovery -->
             <article class="movie-card">
-                <img src="Images/gemma.png" alt="Gemma Bovery movie poster featuring Gemma Arterton" class="movie-poster">
+                <img src="Images/gemma.png" alt="Gemma Bovery French romantic film poster featuring Gemma Arterton" class="movie-poster">
                 <div class="movie-info">
                     <h3 class="movie-title">Gemma Bovery</h3>
                 </div>
@@ -363,7 +92,7 @@
 
             <!-- Movie 2: Young & Beautiful -->
             <article class="movie-card">
-                <img src="Images/Y&B.png" alt="Young and Beautiful movie poster" class="movie-poster">
+                <img src="Images/Y&B.png" alt="Young and Beautiful French romantic drama film poster" class="movie-poster">
                 <div class="movie-info">
                     <h3 class="movie-title">Young & Beautiful</h3>
                 </div>
@@ -371,7 +100,7 @@
 
             <!-- Movie 3: Last Summer -->
             <article class="movie-card">
-                <img src="Images/lastsummer.png" alt="Last Summer movie poster" class="movie-poster">
+                <img src="Images/lastsummer.png" alt="Last Summer French romantic countryside film poster" class="movie-poster">
                 <div class="movie-info">
                     <h3 class="movie-title">Last Summer</h3>
                 </div>
@@ -379,16 +108,21 @@
 
         </section>
 
+        <!-- Movie Selection Message -->
+        <div id="selection-message" class="selection-message" style="display: none;">
+            <!-- Selection will appear here -->
+        </div>
+
         <!-- Video Section: How Key Away Works -->
         <section class="video-section">
-            <h2>Discover How Key Away Works</h2>
-            <p>Watch this video to learn more about finding the perfect film through keyword-based searching:</p>
+            <h2>Discover How Our Keyword Movie Search Works</h2>
+            <p>Watch this video to learn more about finding the perfect film through our keyword-based movie discovery platform:</p>
             <div class="video-container">
                 <iframe 
                     width="560" 
                     height="315" 
                     src="https://www.youtube.com/embed/KDRypdlTWj8?si=By7k_70j5giMJhSL" 
-                    title="YouTube video player" 
+                    title="Key Away keyword movie search tutorial video" 
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                     referrerpolicy="strict-origin-when-cross-origin" 
@@ -399,8 +133,8 @@
 
         <!-- Table Section: Movie Details -->
         <section class="table-section">
-            <h2>Movie Details</h2>
-            <p>Compare key information about your matched films:</p>
+            <h2>French Romantic Film Details and Information</h2>
+            <p>Compare key information about your matched movie search results:</p>
             
             <table>
                 <thead>
@@ -433,16 +167,54 @@
                         <td>Catherine Breillat</td>
                         <td>104 min</td>
                         <td>5.6/10</td>
-                        <td>5.6/10</td>
                     </tr>
                 </tbody>
             </table>
         </section>
 
+        <!-- Movie Objects Display Section -->
+        <section class="movie-objects-section">
+            <h2>Movie Details from Objects</h2>
+            <p>View detailed information about each film using JavaScript objects:</p>
+            
+            <div id="movie-info-display">
+                <!-- Movie object information will be inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Watch Time Calculator Section -->
+        <section class="calculator-section">
+            <h2>Calculate Your Watch Time</h2>
+            <p>Select the movies you want to watch and calculate total viewing time:</p>
+            
+            <div class="movie-checkboxes">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="movie1-check" class="movie-checkbox">
+                    <label for="movie1-check">Gemma Bovery (99 min)</label>
+                </div>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox" id="movie2-check" class="movie-checkbox">
+                    <label for="movie2-check">Young & Beautiful (95 min)</label>
+                </div>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox" id="movie3-check" class="movie-checkbox">
+                    <label for="movie3-check">Last Summer (104 min)</label>
+                </div>
+            </div>
+            
+            <button id="calc-watch-time" class="submit-btn">Calculate Watch Time</button>
+            
+            <div id="watch-time-result" class="result-display">
+                <!-- Results will appear here -->
+            </div>
+        </section>
+
         <!-- Form Section: Refine Your Search -->
         <section class="form-section">
-            <h2>Refine Your Search</h2>
-            <p>Narrow down your results by adding more filters:</p>
+            <h2>Refine Your Movie Search Results</h2>
+            <p>Narrow down your film recommendations by adding more keyword filters:</p>
 
             <form>
                 <!-- Text input with validation -->
@@ -455,7 +227,9 @@
                         placeholder="e.g., nostalgic, artistic, drama"
                         required
                         minlength="3"
+                        aria-label="Add movie keywords"
                     >
+                    <div id="keywords-help" class="input-help" style="display: none;"></div>
                 </div>
 
                 <!-- Number input with validation -->
@@ -469,13 +243,14 @@
                         min="1900"
                         max="2025"
                         required
+                        aria-label="Minimum movie year"
                     >
                 </div>
 
                 <!-- Dropdown selection -->
                 <div class="form-group">
                     <label for="runtime">Maximum Runtime:</label>
-                    <select id="runtime" name="runtime">
+                    <select id="runtime" name="runtime" aria-label="Select maximum runtime">
                         <option value="">Any Length</option>
                         <option value="90">Under 90 minutes</option>
                         <option value="120">Under 2 hours</option>
@@ -507,16 +282,17 @@
                     </div>
                 </div>
 
-                <button type="submit" class="submit-btn">Update Results</button>
+                <!-- Form Success Message -->
+                <div id="form-success" style="display: none;"></div>
+
+                <button type="submit" class="submit-btn">Update Movie Search Results</button>
             </form>
         </section>
 
-        <!-- Navigation Links -->
-        <nav class="nav-links">
-            <a href="key_away.html">← Back to Home Page</a>
-        </nav>
-
     </main>
+
+    <!-- External JavaScript File -->
+    <script src="keyaway_script.js"></script>
 
 </body>
 
