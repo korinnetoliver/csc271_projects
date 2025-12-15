@@ -1,24 +1,21 @@
 /*
     Name: Korinne Toliver
     Date: 12/14/2025
-    Description: JavaScript for Key Away - decision tree and dynamic content
+    Description: JavaScript for Key Away - decision tree, loops, and watch time calculator
     AI help: Used Claude to help debug some of the logic and learn about NodeLists
 */
 
-// Decision tree function based on my flowchart
+// ===== PART 1: DECISION TREE =====
 function recommendSearchMethod() {
-    // ask user the three questions
     const knowsMood = confirm("Do you know what mood you're in?");
     
     let result = "";
     
-    // first decision - do they know their mood?
     if (!knowsMood) {
         result = "Browse Trending Movies";
         alert("Try browsing our trending movies since you're not sure what mood you're in!");
     } 
     else {
-        // second question
         const hasTimePeriod = confirm("Do you have a specific time period in mind?");
         
         if (knowsMood && !hasTimePeriod) {
@@ -26,7 +23,6 @@ function recommendSearchMethod() {
             alert("Search using mood keywords like romantic or thrilling");
         }
         else if (knowsMood && hasTimePeriod) {
-            // third question
             const hasLanguage = confirm("Looking for a specific language or region?");
             
             if (knowsMood && hasTimePeriod && hasLanguage) {
@@ -45,8 +41,7 @@ function recommendSearchMethod() {
 }
 
 
-// FOR LOOP - display movie stats
-// using for loop because i know how many stats there are
+// ===== PART 2: FOR LOOP =====
 function showStats() {
     const stats = [
         { name: "Total Users", num: 1247 },
@@ -64,15 +59,13 @@ function showStats() {
 }
 
 
-// WHILE LOOP - count searches
-// using while loop to count up to total
+// ===== PART 3: WHILE LOOP =====
 function countSearches() {
     const total = 1247;
     let count = 0;
     
     console.log("Counting searches:");
     
-    // count by 200s
     while (count <= total) {
         console.log("Count: " + count);
         count += 200;
@@ -82,24 +75,17 @@ function countSearches() {
 }
 
 
-// NODELIST - enhance movie cards
-// finds all movie cards and adds effects
+// ===== PART 4: NODELIST - MOVIE CARDS =====
 function fixMovieCards() {
     const cards = document.querySelectorAll('.movie-card');
     
-    // check if we found any cards
     if (cards.length > 0) {
         console.log("Found " + cards.length + " movie cards");
         
-        // loop through each card
         for (let i = 0; i < cards.length; i++) {
-            // add class
             cards[i].classList.add('enhanced');
-            
-            // add number
             cards[i].setAttribute('data-number', i + 1);
             
-            // hover effect
             cards[i].addEventListener('mouseenter', function() {
                 this.style.transform = 'scale(1.05)';
             });
@@ -114,18 +100,16 @@ function fixMovieCards() {
 }
 
 
-// NODELIST - fix navigation
+// ===== PART 5: NODELIST - NAVIGATION =====
 function fixNav() {
     const links = document.querySelectorAll('.nav-link');
     
     if (links.length > 0) {
         for (let i = 0; i < links.length; i++) {
             links[i].addEventListener('click', function() {
-                // remove active from all
                 for (let j = 0; j < links.length; j++) {
                     links[j].classList.remove('active');
                 }
-                // add to this one
                 this.classList.add('active');
             });
         }
@@ -133,13 +117,12 @@ function fixNav() {
 }
 
 
-// NODELIST - style review cards
+// ===== PART 6: NODELIST - REVIEW CARDS =====
 function fixReviews() {
     const reviews = document.querySelectorAll('.review-card');
     
     if (reviews.length > 0) {
         for (let i = 0; i < reviews.length; i++) {
-            // alternate colors
             if (i % 2 === 0) {
                 reviews[i].style.borderLeft = '4px solid #667eea';
             } else {
@@ -150,20 +133,119 @@ function fixReviews() {
 }
 
 
-// run everything when page loads
+// ===== PART 7: WATCH TIME CALCULATOR =====
+// Movie data variables
+const movie1Name = "Gemma Bovery";
+const movie1Runtime = 99;
+
+const movie2Name = "Young & Beautiful";
+const movie2Runtime = 95;
+
+const movie3Name = "Last Summer";
+const movie3Runtime = 104;
+
+
+function calculateWatchTime() {
+    // Use getElementById to select checkboxes
+    const checkbox1 = document.getElementById('movie1-check');
+    const checkbox2 = document.getElementById('movie2-check');
+    const checkbox3 = document.getElementById('movie3-check');
+    
+    // Use getElementsByClassName
+    const movieCards = document.getElementsByClassName('movie-card');
+    
+    // Use getElementsByTagName
+    const allInputs = document.getElementsByTagName('input');
+    
+    // Use querySelector
+    const resultArea = document.querySelector('#watch-time-result');
+    
+    // Initialize variables
+    let totalMinutes = 0;
+    let movieCount = 0;
+    
+    // Check selections and add runtimes
+    if (checkbox1 && checkbox1.checked) {
+        totalMinutes += movie1Runtime;
+        movieCount++;
+    }
+    
+    if (checkbox2 && checkbox2.checked) {
+        totalMinutes += movie2Runtime;
+        movieCount++;
+    }
+    
+    if (checkbox3 && checkbox3.checked) {
+        totalMinutes += movie3Runtime;
+        movieCount++;
+    }
+    
+    // Check if any selected
+    if (movieCount === 0) {
+        // Use textContent
+        resultArea.textContent = "Please select at least one movie to calculate watch time.";
+        return;
+    }
+    
+    // Calculate hours and minutes
+    const hours = Math.floor(totalMinutes / 60);
+    const minutes = totalMinutes % 60;
+    
+    // Build message
+    let message = "You selected " + movieCount;
+    
+    if (movieCount === 1) {
+        message += " movie<br>";
+    } else {
+        message += " movies<br>";
+    }
+    
+    message += "Total Watch Time: ";
+    
+    if (hours > 0) {
+        message += hours;
+        if (hours === 1) {
+            message += " hour";
+        } else {
+            message += " hours";
+        }
+    }
+    
+    if (hours > 0 && minutes > 0) {
+        message += " and ";
+    }
+    
+    if (minutes > 0 || hours === 0) {
+        message += minutes + " minutes";
+    }
+    
+    // Use innerHTML to display formatted result
+    resultArea.innerHTML = "<strong>" + message + "</strong>";
+    
+    console.log("Calculated: " + totalMinutes + " minutes total");
+}
+
+
+// ===== INITIALIZE EVERYTHING =====
 document.addEventListener('DOMContentLoaded', function() {
     console.log('JavaScript loaded');
     
-    // run the loops
+    // Run loops
     showStats();
     countSearches();
     
-    // enhance elements
+    // Enhance elements
     fixMovieCards();
     fixNav();
     fixReviews();
     
-    // click to run decision tree
+    // Set up calculator button
+    const calcButton = document.querySelector('#calc-watch-time');
+    if (calcButton) {
+        calcButton.addEventListener('click', calculateWatchTime);
+    }
+    
+    // Click anywhere to run decision tree (once)
     document.body.addEventListener('click', function() {
         recommendSearchMethod();
     }, { once: true });
