@@ -8,7 +8,7 @@
     AI-assisted suggestion: Page layout structure, grid systems, form styling, card designs,
                            hero header with overlay, responsive breakpoints, and navigation
                            system were created with help from Claude. 
-                           See separate AI documentation for details.
+                           
 */
 
 /* ===== CSS Reset ===== */
@@ -912,4 +912,78 @@ body.review-page {
     .content-wrapper {
         padding: 1rem;
     }
+}
+/* ===== EVENT HANDLING STYLES ===== */
+
+/* Movie selection message */
+.selection-message {
+    background: rgba(102, 126, 234, 0.2);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 2px solid #667eea;
+    margin: 2rem 0;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+
+/* Movie card selected state */
+.movie-card.selected {
+    border: 3px solid #667eea;
+    box-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+    transform: translateY(-5px);
+}
+
+/* Form input help messages */
+.input-help {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.05);
+}
+/* Movie Objects Section */
+.movie-objects-section {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 3rem 0;
+}
+
+.movie-objects-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.movie-object-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(102, 126, 234, 0.3);
+    transition: all 0.3s ease;
+}
+
+.movie-object-card:hover {
+    border-color: #667eea;
+    transform: translateY(-5px);
+}
+
+.movie-object-card h3 {
+    color: #667eea;
+    margin-bottom: 1rem;
+    border: none;
+    padding: 0;
+}
+
+.movie-object-card p {
+    color: #e5e5e5;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+}
+
+.movie-object-card strong {
+    color: #ffffff;
 }
